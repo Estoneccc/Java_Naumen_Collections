@@ -1,6 +1,7 @@
 package ru.naumen.collection.task3;
 
 import java.nio.file.Path;
+import java.util.*;
 
 /**
  * <p>Написать консольное приложение, которое принимает на вход произвольный текстовый файл в формате txt.
@@ -19,5 +20,22 @@ public class WarAndPeace {
 
     public static void main(String[] args) {
         // TODO
+        Map<String, Integer> wordCountMap = new HashMap<>();
+        new WordParser(WAR_AND_PEACE_FILE_PATH)
+                .forEachWord(word -> {
+                    wordCountMap.put(word, wordCountMap.getOrDefault(word, 0) + 1);
+                });
+        List<Map.Entry<String, Integer>> wordCountList = new ArrayList<>(wordCountMap.entrySet());
+        Collections.sort(wordCountList, Map.Entry.comparingByValue());
+        Collections.reverse(wordCountList);
+        System.out.println("Наиболее используемые слова:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(wordCountList.get(i).getKey() + " " + wordCountList.get(i).getValue());
+        }
+        Collections.reverse(wordCountList);
+        System.out.println("Наименее используемые слова:");
+        for (int i = 0; i < 10; i++) {
+            System.out.println(wordCountList.get(i).getKey() + " " + wordCountList.get(i).getValue());
+        }
     }
 }
