@@ -37,10 +37,10 @@ public class Task1 {
      */
     public static List<User> findDuplicates(Collection<User> collA, Collection<User> collB) {
         // TODO
-
-        Set<User> setUser = new HashSet<>(collA);
-        collB.retainAll(setUser);
-        return new ArrayList<>(collB);
+        Set<User> setA = new HashSet<>(collA);
+        Set<User> setB = new HashSet<>(collB);
+        setA.retainAll(setB);
+        return new ArrayList<>(setA);
     }
 
     /*
