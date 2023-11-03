@@ -1,5 +1,8 @@
 package ru.naumen.collection.task2;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Дано:
  * <pre>
@@ -25,4 +28,26 @@ package ru.naumen.collection.task2;
 public class Task2 {
 
     // TODO
+    /**
+     * База, в которой находятся билеты и соответствующие к ним товары.
+     */
+    private static final Map<Ticket, String> ticketMap = new HashMap<Ticket, String>(){{
+        put(new Ticket(12, "Misha"), "нет товаров");
+        put(new Ticket(4, "Lesha"), "еда и напитки");
+        put(new Ticket(13, "Masha"), "напитки");
+        put(new Ticket(156, "Kirill"), "еда и напитки");
+    }};
+
+    /**
+     * Возваращает товар, привязанный к билету.
+     * @param ticket билет, по которому нужно найти товар.
+     * @return Товар, который привязан к билету.
+     */
+    public static String findProduct(Ticket ticket){
+        return ticketMap.get(ticket);
+    }
+/*
+    public static void main(String[] args) {
+        System.out.println(findProduct(new Ticket(13, "Masha")));
+    }*/
 }
